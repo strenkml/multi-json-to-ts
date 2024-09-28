@@ -1,5 +1,7 @@
 # Multi-JSON-to-TS
 
+[![Run Tests](https://github.com/strenkml/multi-json-to-ts/actions/workflows/test.yml/badge.svg?branch=master)](https://github.com/strenkml/multi-json-to-ts/actions/workflows/test.yml)
+
 Takes multiple similar JSON objects, checks for structural differences and create TS interfaces
 
 ## Installation
