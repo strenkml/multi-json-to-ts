@@ -1,0 +1,34 @@
+name: Publish Library to NPM
+
+on:
+  release:
+    types: [created]
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout the code from the repository
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Set up Node.js (using a specified version or latest LTS)
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'  # Or the version your project requires
+          cache: 'npm'  # Cache node_modules for faster builds
+
+      # Install npm dependencies
+      - name: Install dependencies
+        run: npm ci
+
+      # Build your library (adjust if your build step is different)
+      - name: Build the project
+        run: npm run build
+
+      - name: Publish to npm
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
