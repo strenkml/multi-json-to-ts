@@ -1,6 +1,6 @@
 # Multi-JSON-to-TS
 
-[![Run Tests](https://github.com/strenkml/multi-json-to-ts/actions/workflows/test.yml/badge.svg?branch=master)](https://github.com/strenkml/multi-json-to-ts/actions/workflows/test.yml)
+[![Tests](https://github.com/strenkml/multi-json-to-ts/actions/workflows/test.yml/badge.svg?branch=master)](https://github.com/strenkml/multi-json-to-ts/actions/workflows/test.yml) [![Linter](https://github.com/strenkml/multi-json-to-ts/actions/workflows/linter.yml/badge.svg?branch=master)](https://github.com/strenkml/multi-json-to-ts/actions/workflows/linter.yml)
 
 Takes multiple similar JSON objects, checks for structural differences and create TS interfaces
 
