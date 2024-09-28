@@ -1,0 +1,49 @@
+{
+  "name": "multi-json-to-ts",
+  "version": "1.0.0",
+  "description": "Takes multiple similar JSON objects, checks for structural differences and create TS interfaces",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npx tsc",
+    "lint": "npx eslint .",
+    "lint:fix": "npx eslint . --fix",
+    "format": "npx prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\"",
+    "update-deps": "npx npm-check -u",
+    "docs": "npx typedoc --entryPointStrategy expand ./src --name NHL-API --out ./docs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/strenkml/multi-json-to-ts.git"
+  },
+  "keywords": [
+    "json",
+    "interface",
+    "ts",
+    "typescript"
+  ],
+  "author": "Matt Strenk",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/strenkml/multi-json-to-ts/issues"
+  },
+  "homepage": "https://github.com/strenkml/multi-json-to-ts#readme",
+  "devDependencies": {
+    "@types/node": "^22.7.4",
+    "eslint": "^9.11.1",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "npm-check": "^6.0.1",
+    "prettier": "^3.3.3",
+    "ts-node": "^10.9.2",
+    "typedoc": "^0.26.7",
+    "typescript": "^5.6.2",
+    "typescript-eslint": "^8.7.0"
+  },
+  "files": [
+    "dist",
+    "LICENSE",
+    "README.md"
+  ]
+}
