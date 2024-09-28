@@ -1,6 +1,29 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import fs from "fs";
 
+/**
+ * Interface for the options object of the InterfaceGenerator class.
+ */
+export interface IInterfaceGeneratorOptions {
+  /**
+   * Whether to backup the old file with a timestamp.
+   * @default false
+   */
+  backupOldFile?: boolean;
+
+  /**
+   * An optional array of JSON variations to merge. If not provided make sure you call addJsonVariation() for each variation. @see addJsonVariation()
+   * @default []
+   */
+  jsonVariations?: any[];
+
+  /**
+   * The name of the file to generate. If not provided, the name of the interface will be used.
+   * @default undefined
+   */
+  fileName?: string;
+}
+
 export default class InterfaceGenerator {
   private accumulatedInterfaces: string;
   private generatedStructures: Record<string, string>;
@@ -9,24 +32,35 @@ export default class InterfaceGenerator {
   private readonly name: string;
   private readonly dirPath: string;
   private readonly backupOldFile: boolean;
+  private readonly fileName: string | undefined;
 
   /**
    * Creates a new instance of the InterfaceGenerator class.
    * @param name - The name of the interface to generate.
    * @param dirPath - The directory path to save the generated interface.
-   * @param backupOldFile - Whether to backup the old file with a timestamp.
-   * @param jsonVariations - An optional array of JSON variations to merge. If not provided make sure you call addJsonVariation() for each variation. @see addJsonVariation()
+   * @param options - An optional object of options for the InterfaceGenerator.
    */
-  public constructor(name: string, dirPath: string, backupOldFile: boolean, jsonVariations?: any[]) {
-    if (!jsonVariations) {
-      this.jsonVariations = [];
+  public constructor(name: string, dirPath: string, options: IInterfaceGeneratorOptions = {}) {
+    if (options.backupOldFile != undefined) {
+      this.backupOldFile = options.backupOldFile;
     } else {
-      this.jsonVariations = jsonVariations;
+      this.backupOldFile = false;
+    }
+
+    if (options.jsonVariations != undefined) {
+      this.jsonVariations = options.jsonVariations;
+    } else {
+      this.jsonVariations = [];
+    }
+
+    if (options.fileName != undefined) {
+      this.fileName = options.fileName;
+    } else {
+      this.fileName = undefined;
     }
 
     this.name = name;
     this.dirPath = dirPath;
-    this.backupOldFile = backupOldFile;
 
     this.accumulatedInterfaces = "";
     this.generatedStructures = {};
@@ -202,7 +236,12 @@ export default class InterfaceGenerator {
   }
 
   private writeInterfacesToFile(): void {
-    const fileName = `${this.capitalizeFirstLetter(this.name)}.ts`;
+    let fileName = "";
+    if (this.fileName) {
+      fileName = this.fileName.replace(/\.ts$/, "") + ".ts";
+    } else {
+      fileName = `${this.capitalizeFirstLetter(this.name)}.ts`;
+    }
     const filePath = `${this.dirPath}/${fileName}`;
 
     if (this.backupOldFile && fs.existsSync(filePath)) {

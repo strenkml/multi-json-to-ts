@@ -8,7 +8,7 @@ describe("InterfaceGenerator", () => {
 
   beforeEach(() => {
     // Setup a new instance before each test
-    generator = new InterfaceGenerator("IPerson", "./output", false);
+    generator = new InterfaceGenerator("IPerson", "./output");
   });
 
   afterEach(() => {
@@ -135,7 +135,7 @@ describe("InterfaceGenerator", () => {
     const mockCopyFileSync = jest.spyOn(fs, "copyFileSync");
     const mockWriteFileSync = jest.spyOn(fs, "writeFileSync");
 
-    const backupGenerator = new InterfaceGenerator("IPerson", "./output", true);
+    const backupGenerator = new InterfaceGenerator("IPerson", "./output", { backupOldFile: true });
     backupGenerator["accumulatedInterfaces"] = "export interface IPerson { name: string; }";
 
     // Mock Date to control the timestamp
