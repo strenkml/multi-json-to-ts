@@ -10,6 +10,13 @@ export default class InterfaceGenerator {
   private readonly dirPath: string;
   private readonly backupOldFile: boolean;
 
+  /**
+   * Creates a new instance of the InterfaceGenerator class.
+   * @param name - The name of the interface to generate.
+   * @param dirPath - The directory path to save the generated interface.
+   * @param backupOldFile - Whether to backup the old file with a timestamp.
+   * @param jsonVariations - An optional array of JSON variations to merge. If not provided make sure you call addJsonVariation() for each variation. @see addJsonVariation()
+   */
   public constructor(name: string, dirPath: string, backupOldFile: boolean, jsonVariations?: any[]) {
     if (!jsonVariations) {
       this.jsonVariations = [];
@@ -26,12 +33,23 @@ export default class InterfaceGenerator {
     this.interfaceNames = new Set();
   }
 
+  /**
+   * Adds a JSON variation to the generator.
+   * @param json - The JSON variation to add.
+   */
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   public addJsonVariation(json: any): void {
     this.jsonVariations.push(json);
   }
 
+  /**
+   * Generates TypeScript interfaces from the JSON variations.
+   */
   public generateInterfaces(): void {
+    if (this.jsonVariations.length === 0) {
+      throw new Error("No JSON variations provided. Call addJsonVariation() for each variation.");
+    }
+
     const mergedData = this.mergeJsonVariations(this.jsonVariations);
 
     this.generateInterfaceFromData(mergedData, this.name);
