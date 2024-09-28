@@ -2,7 +2,7 @@
 
 [![Tests](https://github.com/strenkml/multi-json-to-ts/actions/workflows/test.yml/badge.svg?branch=master)](https://github.com/strenkml/multi-json-to-ts/actions/workflows/test.yml) [![Linter](https://github.com/strenkml/multi-json-to-ts/actions/workflows/linter.yml/badge.svg?branch=master)](https://github.com/strenkml/multi-json-to-ts/actions/workflows/linter.yml)
 
-Takes multiple similar JSON objects, checks for structural differences and create TS interfaces
+Takes multiple similar JSON objects, checks for structural differences and create TS interfaces. Useful for creating interfaces for the output of APIs that you don't know the structure of.
 
 ## Installation
 
