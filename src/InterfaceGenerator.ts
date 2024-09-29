@@ -157,7 +157,7 @@ export default class InterfaceGenerator {
         }
       }
       console.warn(
-        `The array at ${parentName}.${fieldName} is empty. Generated type will be 'unknown[]'. Consider adding variations with data for this field.`,
+        `${this.name}:The array at ${parentName}.${fieldName} is empty. Generated type will be 'unknown[]'. Consider adding variations with data for this field.`,
       );
       return "unknown[]";
     } else if (typeof value === "object" && value !== null) {
@@ -189,7 +189,7 @@ export default class InterfaceGenerator {
       }
     } else if (value === "undefined[]") {
       console.warn(
-        `The array at ${parentName}.${fieldName} is empty. Generated type will be 'unknown[]'. Consider adding variations with data for this field.`,
+        `${this.name}: The array at ${parentName}.${fieldName} is empty. Generated type will be 'unknown[]'. Consider adding variations with data for this field.`,
       );
       return "unknown[]";
     }
