@@ -244,6 +244,10 @@ export default class InterfaceGenerator {
     }
     const filePath = `${this.dirPath}/${fileName}`;
 
+    if (!fs.existsSync(this.dirPath)) {
+      fs.mkdirSync(this.dirPath, { recursive: true });
+    }
+
     if (this.backupOldFile && fs.existsSync(filePath)) {
       // File already exists, backup
       const timestamp = new Date().toISOString().replace(/[-:.]/g, "_");
