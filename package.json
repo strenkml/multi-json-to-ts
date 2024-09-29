@@ -1,6 +1,6 @@
 {
   "name": "multi-json-to-ts",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Takes multiple similar JSON objects, checks for structural differences and create TS interfaces",
   "main": "dist/InterfaceGenerator.js",
   "types": "dist/InterfaceGenerator.d.ts",
